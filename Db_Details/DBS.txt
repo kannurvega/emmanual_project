@@ -1,0 +1,223 @@
+TrafiqPro_PO_Emm-Db name
+
+
+[Wb_Proc_GetCompanyInfo]
+@REGKEY As VARCHAR(25)
+
+Wb_Proc_GetCompanyInfo '1'
+
+Wb_Proc_StaffLogin
+@CompID As VARCHAR(10), @STCODE AS VARCHAR(20), @STPWD AS NVARCHAR(30)
+
+Wb_Proc_StaffLogin 'C01','BU001','DH';
+
+
+
+
+Wb_Proc_Save_BatchCatagory
+@ComID Varchar(10), 
+@Cat_ID Integer,---0 For New
+@Cat_Code Varchar(10),
+@Cat_Name Varchar(50),
+@Cat_Status Integer,-- For Delete
+@Cat_SysID Varchar(20),
+@User Varchar(50),
+@Loc Integer
+
+
+Wb_Proc_Save_BatchSubCatagory
+@ComID Varchar(10), 
+@Cat_ID Integer,---0 For New
+@Cat_Code Varchar(10),
+@Cat_Name Varchar(50),
+@Cat_Status Integer,-- For Delete
+@Cat_SysID Varchar(20),
+@User Varchar(50),
+@Loc Integer
+
+
+Wb_Proc_Save_BatchCatagory 'CI0001',0,'KD2','KIDS2',0,'123','DHANUSH',0 new
+
+Wb_Proc_Save_BatchCatagory 'CI0001',2,'L','ladies_new',0,'123','DHANUSH',0 update 
+
+Wb_Proc_Save_BatchCatagory 'CI0001',10,'GT45','GENTS45',1,'123','DHANUSH',0 delete
+
+
+
+Wb_Proc_Save_BatchCatagory 'CI0001',0,'M1','MENS',0,'123','DHANUSH',0
+
+EXEC sp_executesql @out
+
+Execute (@Out);
+
+
+
+
+-----------------
+
+[Wb_Proc_GetBatchCatagory]
+@ComID Varchar(10), 
+@Search VARCHAR(50)	-- = code or like name 
+
+
+[Wb_Proc_GetBatchSubCatagory]
+@ComID Varchar(10), 
+@Search VARCHAR(50)  -- = code or like name 
+
+
+[Wb_Proc_GetSupplier]
+@ComID Varchar(10), 
+@Search VARCHAR(50) --- Like Name Only
+
+
+[Wb_Proc_GetItem]
+@ComID Varchar(10), 
+@Search VARCHAR(50)  == ITEMCODE
+
+
+[Wb_Proc_Save_PurchaseOrder]
+@POComID Varchar(10), 
+@POCode Varchar(22), ---'' FOR NEW
+@PODate Date,01-JAN-2024
+@POBuyerID Integer, 
+@POSupplierCode Varchar(22),
+@PONotes Varchar(100),
+@POStatus Integer,
+@User Varchar(50),
+@Loc Integer
+
+
+SET NOCOUNT ON; EXEC Wb_Proc_Save_PurchaseOrder 'CI0001',0,'2025-01-15',1,'AC20210226000100000942','NOTES1',0,'DHANUSH',0
+
+[dbo].[Wb_Proc_Save_PO_Batch]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@POProdCode Varchar(22),
+@POGroupID Integer,
+@POSubGroupID Integer,
+@POBuyerID Integer,
+@POSuppCode as Varchar(22),
+@POHsn as VARCHAR(15),
+@POTaxCode as Varchar(22),
+@POEAN as Varchar(22),
+@POBrand as Varchar(30),
+@POFit as Varchar(30),
+@POShape as Varchar(25),
+@POStyle as Varchar(25),
+@POSize as Varchar(20),
+@POColour as Varchar(20),
+@PODescription as Varchar(50),
+@POQty as Money,
+@PORate as Money,
+@POValue As Money,
+@POTaxPer As Money,
+@POMrp as Money,
+@User Varchar(50),
+@Loc Integer
+
+SET NOCOUNT ON;EXEC Wb_Proc_Save_PO_Batch 'C0010','P1','p0002',1,2,2,'df12','','','','','','','','','',5,100,500,0,'dhanush',0
+
+
+
+ [dbo].[Wb_Proc_List_PO]
+@ComID Varchar(10), 
+@BuyerID as Integer,
+@Sup Varchar(100),
+@Dt1 As Date,
+@Dt2 As Date,
+@Status as Integer
+
+SET NOCOUNT ON; EXEC Wb_Proc_List_PO '',1,'','01-jan-2025','31-jan-2025',0
+
+SET NOCOUNT ON; EXEC Wb_Proc_List_PO '',1,'','01-jan-2025','01-jan-2025',0
+
+SET NOCOUNT ON; EXEC Wb_Proc_Save_PO_Batch 'CI0001','PO11111','PM20210226000100000250', 1,0,1,'','','','','0','', '','','','','',1,1,,,'DHANUSH',0
+
+
+
+[dbo].[Wb_Proc_Get_PO_Header]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@Loc Integer
+
+Wb_Proc_Get_PO_Header '','PO20250116001000000006',0
+
+
+[Wb_Proc_List_PO_Item]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@Loc Integer
+
+Wb_Proc_List_PO_Item '','PO20250116001000000006',0
+
+
+[dbo].[Wb_Proc_GetBranch]
+@ComID Varchar(10), 
+@Search VARCHAR(50) --- BRANCHNAME LIKE
+
+
+[dbo].[Wb_Proc_Get_PO_Batch_Details]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@POBatch Varchar(22),
+@Loc Integer
+
+
+Wb_Proc_Get_PO_Batch_Details '','PO20250116001000000004','00114',0
+
+
+
+[dbo].[Wb_Proc_Save_Branch_Splitup]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@POBatch Varchar(22),
+@POROW INT,
+@POQty Money,
+@PO_Status Integer,-- 1 For Delete
+@User Varchar(50),
+@Loc Integer
+ SET NOCOUNT ON; EXEC Wb_Proc_Save_Branch_Splitup '','PO20250116001000000006','PM20210226000100000250',5,0,'DHSNUSH',1
+
+
+
+
+[dbo].[Wb_Proc_Save_PO_Batch_Rev]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@POBatch Varchar(22),
+@POrow INT,
+@POProdCode Varchar(22),
+@POGroupID Integer,
+@POSubGroupID Integer,
+@POBuyerID Integer,
+@POSuppCode as Varchar(22),
+@POHsn as VARCHAR(15),
+@POTaxCode as Varchar(22),
+@POEAN as Varchar(22),
+@POBrand as Varchar(30),
+@POFit as Varchar(30),
+@POShape as Varchar(25),
+@POStyle as Varchar(25),
+@POSize as Varchar(20),
+@POColour as Varchar(20),
+@PODescription as Varchar(50),
+@POQty as Money,
+@PORate as Money,
+@POValue As Money,
+@POTaxPer As Money,
+@POMrp as Money,
+@User Varchar(50),
+@Loc Integer,
+@Status As Integer
+
+[Wb_Proc_GetBranchSplit]
+@POComID Varchar(10), 
+@POCode Varchar(22), 
+@POBatch Varchar(22),
+@PORow Integer
+
+
+
+
+
+

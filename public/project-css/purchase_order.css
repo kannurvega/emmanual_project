@@ -1,0 +1,107 @@
+.main_dv{
+
+    border: 5px solid #f7d000;
+      border-radius: 8px;
+    }
+    #ext_dv{
+        border:5px solid #592828;
+        border-radius: 8px;
+        padding-left:50px;
+    }
+    
+    #pu_ord_hdr{
+        height:22vh;
+        border-bottom:2px solid black;
+        padding-top:20px;
+        background: #242322;
+      color: wheat;
+    }
+    #pu_ord_detl{
+        /* display:none; */
+    }
+    .form_div{
+      overflow-y:hidden !important;
+    }
+    #pu_ord_hdr_section{
+      height:100%;
+    }
+    #pu_ord_lst{
+      width:100%;
+    }
+    #pu_ord_lst_tbl thead{
+      
+    
+    }
+
+    #po_no_series{
+      text-align: right;
+  width: 10%;
+  font-size: 16px;
+  color: #2d12b0;
+  font-weight: bold;
+    }
+  
+
+    #rec_tbl th{
+      padding:0px !important;
+      padding-top: 10px !important;
+  padding-bottom: 8px !important;
+    }
+
+
+    #pu_ord_lst_tbl tr th {
+      position: sticky;
+      top:0;
+      font-size:16px;
+      padding:2px;
+      background: #dbdba4;
+
+    
+    }
+    #pu_ord_lst{
+      overflow-y:scroll;
+    }
+    #pu_ord_lst_tbl tr td {
+       
+        font-size:16px;
+        padding:2px;
+  
+      
+      }
+      html{
+        overflow-y: hidden;
+      }
+      .selected{
+        background: #9ebec8;
+        color: #1431cc;
+        font-weight: bold;
+      }
+      #pu_ord_lst_tbl tbody tr:hover{
+        background: #9ebec8;
+        color: #1431cc;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .nav-tabs{
+
+font-size: 12px;
+
+
+      }
+      .dynmc_tr_tbl:hover{
+        cursor:pointer;
+        background:grey;
+        color:white;
+
+      }
+      #po_no_txt{
+        text-align: right;
+  width: 39%;
+  font-size: 17px;
+  font-weight: bold;
+  color: #ac225c;
+      }
+      .tr_selected{
+        background:grey;
+        color:white;
+      }
