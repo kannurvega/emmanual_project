@@ -20,9 +20,9 @@ $(document).ready(function() {
     //     }
     // });
 
-    $("#pu_ord_detl").css('height',($(document).height()-($("#main-nav").height()+$(".page-foooter").height()))-300);
+    $("#pu_ord_detl").css('height',($(document).height()-($("#main-nav").height()+$(".page-foooter").height()))-120);
 
-$("#pu_ord_lst").css('height',($(document).height()-($("#main-nav").height()+$("#pu_ord_hdr").height()+$(".page-foooter").height()))-150);
+$("#pu_ord_lst").css('height',($(document).height()-($("#main-nav").height()+$("#pu_ord_hdr").height()+$(".page-foooter").height()))-130);
 
 
 
@@ -125,7 +125,7 @@ function load_product_detls(){
     if(po_code==''){
 
 
-        alert("Select Any Order...");
+        CustomAlert("Select Any Order...");
         return false;
     }
     else{
@@ -142,7 +142,7 @@ function load_product_detls(){
 
     po_code=$("#po_code").val();
     if(po_code==''){
-alert("Select Any Order...");
+        CustomAlert("Select Any Order...");
         return false;
     }
 
@@ -226,6 +226,7 @@ if($("#t_date").val().trim()==''||$("#t_date").val().trim()=='00/00/0000'){
 
 
 function save_form(){
+    $(".btn").attr('disabled',true);
     $.ajax({
         url: "/save_pu_header",
         type: "POST",
@@ -248,7 +249,7 @@ function save_form(){
         
         },
         success:function(response){
-        
+            $(".btn").attr('disabled',false);
         
        
         flag=response[0]['Result_Status'];
@@ -266,7 +267,7 @@ function save_form(){
         }else{
         //    alertify.notify($(".page-title").text()+' '+msg, 'error', 5);
         }
-       alert(msg);
+        custom_alert_txt(msg,flag);
         
         },
         error: function(xhr) {
@@ -286,8 +287,8 @@ click_id=key;
 $("#row_id").val(key);
 $("#po_code").val(key);
 $("#po_no_txt").text(key);
-$(".dynmc_tr_tbl").removeClass('tr_selected');
-$(elm).closest('tr').addClass('tr_selected');
+$(".dynmc_tr_tbl_pdt").removeClass('tr_selected_pdt');
+$(elm).closest('tr').addClass('tr_selected_pdt');
 $("#hidden_status").val(1);
 load_po_header_det();
 }
@@ -305,7 +306,7 @@ function clear_pu_hdr(){
 
 
 
-function set_edit_form(key){
+function set_edit_form(sts,key){
     $("#row_id").val(key);
     $("#po_code").val(key);
 $("#po_no_txt").text(key);
@@ -339,6 +340,7 @@ function load_po_header_det(){
         },
         success:function(response){
         
+            
         
        data=response;
        $("#sup_name").attr('sup_id',data[0]['PO_SupCode']);
@@ -403,7 +405,7 @@ function load_po_header_det(){
   show_last_total=false;
   var col_typ = [];
   var status_col=[];
-  
+  var bg_arr_tr=[];
   fn='';
   htm = '';
   var screenWidth = $(window).width();
@@ -429,7 +431,7 @@ function load_po_header_det(){
   keys = Object.keys(tbl_data[0]);
 //   console.log(keys);
   
-  htm += '<div class="tbl_dv" style="border:1px solid ' + bg_arr_clr[0] + ';"><table class="table table-bordereds  responsive-utilities jambo_table" id="rec_tbl" ><thead style="color:#514a4a;background:#bdbd09e8;">';
+  htm += '<div class="tbl_dv" style="border:1px solid ' + bg_arr_clr[0] + ';"><table class="table table-bordereds  responsive-utilities jambo_table" id="rec_tbl" ><thead style="color:#514a4a;background:#f1f1e0e8;">';
   htm += '<tr >';
   // htm+='<th style="width:1%;">Sl</th>';
   var col_totals = Array(keys.length).fill(0);
@@ -454,10 +456,13 @@ function load_po_header_det(){
   
   
         col_typ.push(k + 'C');
+
+
     } else if (fst == 'I') {
         col_typ.push(k + 'I');
   
     }
+  
   
     var rightSide = splitKey[splitKey.length - 1];
     txt_alg = 'center';
@@ -502,9 +507,15 @@ function load_po_header_det(){
       status_col.push(k);
       disp_colum.push(k);
     }
-  
+    if(keys[k]=='bg_clr')
+        {
+    
+          bg_arr_tr.push(k);
+    
+      }
   
   }
+
   for(k=0;k<=ad_cnt;k++){
     htm+='<th style="width:3%;">&nbsp;</th>';
   }
@@ -583,7 +594,15 @@ function load_po_header_det(){
   btn_str='';
   
     var x =k;
-    htm += '<tr class="dynmc_tr_tbl" >';
+    // if(new_data[status_col[0]]==1){
+    //     tr_hg_cls=new_data[bg_arr_tr[0]];
+    //    }else{
+      
+      
+    //    }
+       tr_hg_cls=new_data[bg_arr_tr[0]];
+       htm += '<tr class="dynmc_tr_tbl_pdt" style="background: '+tr_hg_cls+';" >';
+    // htm += '<tr class="dynmc_tr_tbl_pdt" >';
     txt_alg = 'center';
     // htm+='<td>'+x+'</td>';
     new_data = Object.values(tbl_data[i]);
@@ -617,7 +636,7 @@ function load_po_header_det(){
                 subtotals[j] += parseFloat(last_val) || 0;
   
   
-  
+            }
   
                 last_val = last_val;
   
@@ -627,6 +646,7 @@ function load_po_header_det(){
                 } else if (col_typ.includes(j + 'C')) {
   
                     last_val = parseFloat(last_val).toFixed(2);
+                
   
                 } else if (col_typ.includes(j + 'I')) {
   
@@ -636,18 +656,18 @@ function load_po_header_det(){
   
   
   
-            }
+         
  
             if(status_col.includes(j)){
   
               if(last_val==0){
   
-                last_val='Zero';
+                last_val='&nbsp;';
         
   
               }else{
                
-                last_val='One';
+                last_val='<i class="fa fa-check" style="color:green;"></i>';
             
               }
   
@@ -771,7 +791,7 @@ function load_po_header_det(){
   
   }
   
-  htm += '<tr style="background: #ca8757;color: #1c1818;font-weight: bold;'+dt+'">';
+  htm += '<tr style="background: #f1f1e0e8;color: #1c1818;font-weight: bold;'+dt+'">';
   
   for (k = 0; k < keys.length; k++) {
     if (disp_colum.includes(k)) {
@@ -919,29 +939,105 @@ function load_po_header_det(){
 
 
   function filter_po_list(){
-    sel_sts=$("#sel_sts").val();
-$(".dynmc_tr_tbl").hide();
-if(sel_sts==1){
-$(".add_btn_td").each(function(){
+    load_purchase_order_list();
 
-    if($(this).attr('sts')==1){
-$(this).closest('tr').show();
-    }
+//     sel_sts=$("#sel_sts").val();
+// $(".dynmc_tr_tbl_pdt").hide();
+// if(sel_sts==1){
+// $(".add_btn_td").each(function(){
+
+//     if($(this).attr('sts')==1){
+// $(this).closest('tr').show();
+//     }
     
 
-});
+// });
 
-}
-else{
+// }
+// else{
 
-$(".add_btn_td").each(function(){
+// $(".add_btn_td").each(function(){
 
-    if($(this).attr('sts')==0){
-$(this).closest('tr').show();
-    }
+//     if($(this).attr('sts')==0){
+// $(this).closest('tr').show();
+//     }
     
 
-});
+// });
+// }
+
+  }
+function validate_po_order(){
+
+if(confirm('Are you sure want to validate PO ?...Once validated it cannot be edited.')){
+
+validate_andconfim_po_order();
+
 }
 
+
+
+}
+  function validate_andconfim_po_order() {
+    $(".btn").attr('disabled',true);
+    const button = document.getElementById('confirmButton');
+
+    
+    button.classList.add('loading');
+
+    
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+    button.appendChild(spinner);
+
+
+
+
+    $.ajax({
+        url: "/validate_po_order",
+        type: "POST",
+        headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+        
+                
+        data:{
+    
+            po_code:$("#row_id").val(),
+            t_date:$("#t_date").val(),
+            sup_id:$("#sup_name").attr('sup_id')
+
+       
+        },
+        success:function(response){
+        
+            $(".btn").attr('disabled',false);
+       data=response;
+       flag=data[0]['Result_Status'];
+       msg=data[0]['Remarks'];
+       button.classList.remove('loading');
+       spinner.remove(); 
+       custom_alert_txt(msg,flag);
+       setTimeout(() => {
+        location.reload();
+    }, 3000);
+ 
+        
+        },
+        error: function(xhr) {
+                            if (xhr.status === 422) {
+                                var errors = xhr.responseJSON.errors;
+                                $.each(errors, function(key, value) {
+                                    $('#_error').text(value[0]);                        });
+                            }
+                        }
+        });
+
+
+
+    
+    // setTimeout(() => {
+    //   button.classList.remove('loading');
+    //   spinner.remove(); 
+    // }, 3000);
   }

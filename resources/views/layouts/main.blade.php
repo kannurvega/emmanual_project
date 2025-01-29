@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style3.css') }}?v=3.5.0">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 
 
@@ -395,6 +395,7 @@ body {
 <!--Bottom Footer-->
     <div class="bottom section-padding text-center">
 <span id="uid"></span>
+<span id="alt_text"></span>
 
     </div>
 <!--Bottom Footer-->
@@ -402,7 +403,12 @@ body {
     <div class="overlay"></div>
    
 
-  
+    <div id="customAlertOverlay">
+  <div id="customAlert">
+    <h2 id="customAlertMessage">This is a custom alert!</h2>
+    <button id="customAlertButton">OK</button>
+  </div>
+</div>
 
 
     <!-- <script src="{{ asset('js/jquery-3.3.1.slim.min.js')}}" ></script> -->
@@ -426,7 +432,7 @@ body {
 
     <script  src="{{ asset('js/UUID.js') }}" ></script>
     <script  src="{{ asset('js/client.min.js') }}" ></script>
-    <script src="{{ asset('project-js/vega_scripts.js')}}"></script>
+    <script src="{{ asset('project-js/vega_scripts.js')}}?v=2.7.0"></script>
     
     @include('common.db_mdl')
 <script type="text/javascript">
@@ -483,6 +489,10 @@ uuid=$("#uuid").val();
 decimal_place=$("#decimal_place").val();
 // token=getCookie('inv_id');
 
+
+$('#customAlertButton').on('click', function () {
+    $('#customAlertOverlay').fadeOut();
+  });
 
 
 });
@@ -554,7 +564,27 @@ $.widget('custom.tableAutocomplete', $.ui.autocomplete, {
 
 
 
+function custom_alert_txt(msg,flag) {
 
+  bg_clr='';
+  if(flag==1){
+    bg_clr='text-success';
+}
+  else{
+    bg_clr='text-danger';
+  }
+
+  $("#alt_text").html('<span class="'+bg_clr+'" style="font-weight: bold;letter-spacing: 1px;font-style: italic;">'+msg+'</span>');
+
+
+  setTimeout(function(){
+
+ $("#alt_text").html('');
+  },3000);
+  
+}
+
+  // custom_alert_txt('Saved Succesfully',1);
 
 
 
@@ -575,6 +605,12 @@ function getCookie(name) {
   return cookieValue;
 }
 
+function CustomAlert(message) {
+    $('#customAlertMessage').text(message);
+    $('#customAlertOverlay').fadeIn();
+  }
+
+  
 
 
 </script>

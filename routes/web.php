@@ -26,6 +26,7 @@ use App\Http\Controllers\TransactionController;
 // Route::get('/', [HomeController::class, 'purchase_order'])->name('purchase_order');
 Route::get('/', [HomeController::class, 'login'])->name('login');
 Route::post('/check_login', [LoginController::class, 'check_login'])->name('check_login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/run_query', [db_controller::class, 'run_query'])->name('run_query');
 Route::post('/load_data', [db_controller::class, 'load_data'])->name('load_data');
 Route::post('/fetch_sp_nd_tbl', [db_controller::class, 'fetch_sp_nd_tbl'])->name('fetch_sp_nd_tbl');
@@ -57,6 +58,7 @@ Route::middleware('check_user_session')->group(function () {
     Route::post('/save_pu_header', [TransactionController::class, 'save_pu_header'])->name('save_pu_header');
     Route::post('/save_product_po', [TransactionController::class, 'save_product_po'])->name('save_product_po');
     Route::post('/save_branch_split_qty', [TransactionController::class, 'save_branch_split_qty'])->name('save_branch_split_qty');
+    Route::post('/validate_po_order', [TransactionController::class, 'validate_po_order'])->name('validate_po_order');
 
 
 

@@ -10,6 +10,12 @@ class HomeController extends Controller
     public function __construct()
     {
         $connection = DB::connection('sqlsrv');
+        // $menuItems = [
+        //     ['module_id' => '12','module_url' => 'purchase_order', 'module_prefix' => 'PO', 'menu_type' => 2, 'module_name' => 'Purchase Order','sp_name' => ''],
+        //     ['module_id' => '2','module_url' => 'batchGroup', 'module_prefix' => 'BG', 'menu_type' => 2, 'module_name' => 'Batch Group','sp_name' => ''],
+        //     ['module_id' => '5','module_url' => 'subGroup', 'module_prefix' => 'SG', 'menu_type' => 2, 'module_name' => 'Sub Group','sp_name' => ''],
+        //     ['module_id' => '8','module_url' => 'grouped_report', 'module_prefix' => 'rp', 'menu_type' => 2, 'module_name' => 'Report','sp_name' => '']
+        // ];
     }
 
 public function purchase_order($id,$typ)

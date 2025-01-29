@@ -35,12 +35,105 @@
     margin-top:20px;
 }
 
+.form-control-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      transform: translateY(-50%);
+      transition: all 0.2s ease;
+      color: #aaa;
+      pointer-events: none;
+    }
+
+    .form-control:focus + .form-control-placeholder,
+    .form-control:not(:placeholder-shown) + .form-control-placeholder {
+      top: -10px;
+      font-size: 12px;
+      color: #333;
+    }
+    .form-group {
+      position: relative;
+      margin-top: 20px;
+    }
+
+
+    @media (min-width: 576px) {
+        .mdl_pdt_det_cntnr{
+height:74vh;
+}
+  }
+  @media (min-width: 992px) {
+    .mdl_pdt_det_cntnr{
+        height:70vh;
+}
+  }
+  .lens-button {
+            background-color: #007BFF; /* Blue background */
+            border: none; /* Remove border */
+            color: white; /* White text */
+            padding: 10px; /* Padding around the icon */
+            font-size: 14px; /* Icon size */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 40%; /* Circular button */
+            width: 30px; /* Fixed width */
+            height: 30px; /* Fixed height */
+            display: flex; /* Flexbox for centering */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            margin-top:15px;
+        }
+
+        /* Hover effect */
+        .lens-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .plus-button {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin-top:20px;
+}
+        .plus-button2 {
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color:rgba(129, 61, 159, 0.93);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin-top:20px;
+}
+
+.plus-button:hover {
+  background-color: #0056b3;
+}
+
+.plus-icon {
+  line-height: 1;
+}
 </style>
 
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-warning">
                 <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
             </div>
@@ -51,12 +144,12 @@
 <input type="hidden" id="pmdl_batch_code" value="0">
 
 
-            <div class="container">
+            <div class="container mdl_pdt_det_cntnr" >
   <div class="row">
       <div class="col-12 col-md-12 col-lg-12 col-sm-12" >
-        <ul class="nav nav-pills">
+        <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" href="#product_det" role="tab" aria-controls="pills-product_det" aria-selected="true">Product</a>
+            <a class="nav-link active" data-toggle="pill" href="#product_det" role="tab" aria-controls="pills-product_det" aria-selected="true">Product <i class="fa fa-databse"></i></a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="pill" href="#size_nd_qty" role="tab" aria-controls="pills-size_nd_qty" aria-selected="false">Size And Color</a>
@@ -73,28 +166,64 @@
         <div class="tab-pane fade show active" id="product_det" role="tabpanel" aria-labelledby="product_det-tab">
         <div id="productForm">
         <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-4 col-4" style="padding-top: 18px;">
-        <div class="input-group">
-            <label for="productCode" class="form-label"></label>
-            <input type="text" class="form-control input_with_ui mndatory_fld" id="product_Code" prod_id="0" placeholder="Product Code *">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-4" style="">
+    
+        <div class="input-group row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-10">
+
+        <div class="form-group">
+        <input type="text" class="form-control input_with_ui mndatory_fld" id="product_Code" prod_id="0" placeholder=" ">
+        <label class="form-control-placeholder" for="product_Code">Product Code <span class="text-danger">*</span></label>
+       
+      </div>
 
 
-            <span class="input-group-text" onclick="load_product();" style="cursor:pointer;">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-2">
+        <button class="lens-button" type="button" onclick="load_product();">
+        <i class="fas fa-search"></i> <!-- Font Awesome lens icon -->
+    </button>
+        <!-- <span class="input-group-text" onclick="load_product();" style="cursor:pointer;">
                 <i class="fa fa-search"></i>
-            </span>
+            </span> -->
+        </div>
+
+     
+
+            <!-- <label for="productCode" class="form-label"></label>
+            <input type="text" class="form-control input_with_ui mndatory_fld" id="product_Code" prod_id="0" placeholder="Product Code *"> -->
+
+
+         
         </div>
         <div class="text-danger error_txt" id="product_Code_error"></div>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-7 col-7">
         <div class="">
-            <label for="productName" class="form-label"></label>
+        <div class="form-group">
+        <input type="text" class="form-control ipt_val input_with_ui  vldt_flds mndatory_fld" id="productName" placeholder=" ">
+        <label class="form-control-placeholder" for="productName">Product Name <span class="text-danger">*</span></label>
+      </div>
+       
+            <!-- <label for="productName" class="form-label"></label>
             <input type="text" class="form-control ipt_val input_with_ui  vldt_flds mndatory_fld"  id="productName" placeholder="Product Name *">
+       
+        -->
+       
         </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-2">
         <div class="">
-            <label for="productName" class="form-label"></label>
-            <input type="text" class="form-control ipt_val input_with_ui  vldt_flds" id="prd_taxperc" prd_tax_code="0" placeholder="Tax%">
+
+
+        <div class="form-group">
+        <input type="text" class="form-control ipt_val input_with_ui  vldt_flds" id="prd_taxperc" prd_tax_code="0"  placeholder=" ">
+        <label class="form-control-placeholder" for="prd_taxperc">Tax%</label>
+      </div>
+
+
+            <!-- <label for="productName" class="form-label"></label>
+            <input type="text" class="form-control ipt_val input_with_ui  vldt_flds" id="prd_taxperc" prd_tax_code="0" placeholder="Tax%"> -->
         </div>
     </div>
 </div>
@@ -110,13 +239,23 @@
 <span><input    type="checkbox" id="batch_check"  ></span>
 
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 col-11">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
             <div class="">
-                                <label for="batchGroup" class="form-label"></label>
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" batch_id="0" placeholder="" id="pro_batch_gp">
+        <label class="form-control-placeholder" for="pro_batch_gp">Batch Group <span class="text-danger">*</span></label>
+      </div>
+                                <!-- <label for="batchGroup" class="form-label"></label>
 
-                                <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" batch_id="0" placeholder="Batch Group *" id="pro_batch_gp">
+                                <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" batch_id="0" placeholder="Batch Group *" id="pro_batch_gp"> -->
                             </div>
         <div class="text-danger error_txt" id="pro_batch_gp_error"></div>
+
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-1">
+            <button class="plus-button" type="button" onclick="open_batch_nd_sb_mdl('BG','Wb_Proc_GetBatchCatagory');">
+  <span class="plus-icon">+</span>
+</button>
 
             </div>
            
@@ -126,29 +265,56 @@
 <span><input    type="checkbox" id="sub_batch_check"  ></span>
 
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 col-11">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-10">
             <div class="">
-                                <label for="subGroup" class="form-label"></label>
 
-                                <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" Batch_subCatID="0" placeholder="Sub Group *" id="pro_batch_sub_sp">
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" Batch_subCatID="0" placeholder="" id="pro_batch_sub_sp">
+
+            <label class="form-control-placeholder" for="pro_batch_sub_sp">Sub Group <span class="text-danger">*</span></label>
+</div>
+                                <!-- <label for="subGroup" class="form-label"></label>
+
+                                <input type="text" class="form-control ipt_val input_with_ui mndatory_fld" Batch_subCatID="0" placeholder="Sub Group *" id="pro_batch_sub_sp"> -->
 
                                 <div class="text-danger error_txt" id="pro_batch_sub_sp_error"></div>
 
                             </div>
 </div>
+<div class="col-lg-1 col-md-1 col-sm-1 col-1">
+            <button class="plus-button2"  type="button" onclick="open_batch_nd_sb_mdl('SG','Wb_Proc_GetBatchSubCatagory');">
+  <span class="plus-icon">+</span>
+</button>
+
+            </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="batchGroup" class="form-label"></label>
-                                <input type="text" class="form-control ipt_val input_with_ui " placeholder="Brand" id="prd_brand">
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui " placeholder="" id="prd_brand">
+            <label class="form-control-placeholder" for="prd_brand">Brand</label>
+
+
+</div>
+                                <!-- <label for="batchGroup" class="form-label"></label>
+                                <input type="text" class="form-control ipt_val input_with_ui " placeholder="Brand" id="prd_brand"> -->
 
                             </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="batchGroup" class="form-label"></label>
+
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui " id="prd_fit" placeholder="">
+
+            <label class="form-control-placeholder" for="prd_fit">Fit</label>
+</div>
+                                <!-- <label for="batchGroup" class="form-label"></label>
 
                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_fit" placeholder="Fit">
+                           -->
+                          
+                          
                             </div>
             </div>
             </div>
@@ -158,35 +324,60 @@
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="subGroup" class="form-label"></label>
-                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_shape" placeholder="Shape">
+            <div class="form-group">
+
+            <input type="text" class="form-control ipt_val input_with_ui " id="prd_shape" placeholder="">
+
+            <label class="form-control-placeholder" for="prd_shape">Shape</label>
+
+        </div>
+                                <!-- <label for="subGroup" class="form-label"></label>
+                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_shape" placeholder="Shape"> -->
 
 
                             </div>
 </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="subGroup" class="form-label"></label>
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui " id="prd_style" placeholder="">
+
+            <label class="form-control-placeholder" for="prd_style">Style</label>
+
+        </div>
+                                <!-- <label for="subGroup" class="form-label"></label>
 
                                 <input type="text" class="form-control ipt_val input_with_ui " id="prd_style" placeholder="Style">
-                      
+                       -->
 
                             </div>
 </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="subGroup" class="form-label"></label>
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui " id="prd_size" placeholder="">
 
-                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_size" placeholder="Size">
+            <label class="form-control-placeholder" for="prd_size">Size</label>
+
+        </div>
+                                <!-- <label for="subGroup" class="form-label"></label>
+
+                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_size" placeholder="Size"> -->
 
 
                             </div>
 </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="">
-                                <label for="subGroup" class="form-label"></label>
+            <div class="form-group">
+            <input type="text" class="form-control ipt_val input_with_ui " id="prd_color" placeholder="">
 
-                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_color" placeholder="Color">
+            <label class="form-control-placeholder" for="prd_color">Color</label>
+
+        </div>
+                                <!-- <label for="subGroup" class="form-label"></label>
+
+                                <input type="text" class="form-control ipt_val input_with_ui " id="prd_color" placeholder="Color"> -->
 
 
                             </div>
@@ -199,23 +390,50 @@
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="">
-                                <label for="ean" class="form-label"></label>
+<div class="form-group">
+<input type="text" class="form-control ipt_val input_with_ui " id="prod_ean" placeholder="">
+
+<label class="form-control-placeholder" for="prod_ean">EAN</label>
+
+</div>
+                                <!-- <label for="ean" class="form-label"></label>
                                 <input type="text" class="form-control ipt_val input_with_ui " id="prod_ean" placeholder="EAN">
+                             -->
+                            
                             </div>
 
 </div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="">
-                                <label for="hsn" class="form-label"></label>
+<div class="form-group">
+<input type="text" class="form-control ipt_val input_with_ui " id="prod_hsn" placeholder="">
+
+<label class="form-control-placeholder" for="prod_hsn">HSN</label>
+</div>
+
+                                <!-- <label for="hsn" class="form-label"></label>
                                 <input type="text" class="form-control ipt_val input_with_ui " id="prod_hsn" placeholder="HSN">
+                            -->
+                           
+                           
                             </div>
 </div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
 
 
 <div class="">
-                                <label for="batch" class="form-label"></label>
+
+<div class="form-group">
+<input type="text" readonly class="form-control ipt_val input_with_ui " id="normalCode" placeholder="">
+
+<label class="form-control-placeholder" for="normalCode">Batch</label>
+
+</div>
+
+                                <!-- <label for="batch" class="form-label"></label>
                                 <input type="text" readonly class="form-control ipt_val input_with_ui " id="normalCode" placeholder="Batch">
+                             -->
+                            
                             </div>
 </div>
 
@@ -234,10 +452,15 @@
                            <div class="row mt-2">
                      <div class="col-lg-4 col-md-4 col-sm-4 col-4 ">
 
+                     <div class="form-group">
+                     <input type="text" class="form-control ipt_val input_with_ui " id="prd_desc" placeholder="">
 
+<label class="form-control-placeholder" for="prd_desc">Product Description</label>
+
+</div>
 
 <!-- <textarea name="" id="prd_desc" placeholder="Product Description" class="form-control ipt_val input_with_ui "></textarea> -->
-<input type="text" class="form-control ipt_val input_with_ui " id="prd_desc" placeholder="Product Description">
+<!-- <input type="text" class="form-control ipt_val input_with_ui " id="prd_desc" placeholder="Product Description"> -->
 
                      </div>
                      <div class="col-lg-4 col-md-4 col-sm-4 col-4 ">
@@ -254,18 +477,34 @@
 
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal clc_vl mndatory_fld"  id="prd_qty" placeholder="Qty*">
+        <div class="form-group">
+        <input type="text" class="form-control ipt_val input_with_ui  i_decimal clc_vl mndatory_fld"  id="prd_qty" placeholder="">
+        <label class="form-control-placeholder" for="prd_qty">Qty<span class="text-danger">*</span></label>
+
+        </div>
+       
+ 
 
     <div class="text-danger error_txt" id="prd_qty_error"></div>
 
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal clc_vl mndatory_fld" id="prd_rate" placeholder="Rate*">
+
+
+     <div class="form-group">
+    <input type="text" class="form-control ipt_val input_with_ui  i_decimal clc_vl mndatory_fld" id="prd_rate" placeholder="">
+    <label class="form-control-placeholder" for="prd_rate">Rate<span class="text-danger">*</span></label>
+</div>
 
     <div class="text-danger error_txt" id="prd_rate_error"></div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-4">
-    <input type="text" class="form-control ipt_val input_with_ui " readonly id="prd_value" placeholder="0.00*">
+    <div class="form-group">
+    <input type="text" class="form-control ipt_val input_with_ui " readonly id="prd_value" placeholder="">
+    <label class="form-control-placeholder" for="prd_value">Value <span class="text-danger">*</span></label>
+
+
+    </div>
 
     
     </div>
@@ -279,20 +518,29 @@
                            <div class="col-lg-6 col-md-6 col-dm-6 col-6">
                            <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="prd_cost" readonly placeholder="Cost">
+    <div class="form-group">
 
+    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="prd_cost" readonly placeholder="">
+    <label class="form-control-placeholder" for="prd_cost">Cost</label>
+
+    </div>
   
 
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="cost_percent" placeholder="Cost %*">
+    <div class="form-group">
+    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="cost_percent" placeholder="">
+    <label class="form-control-placeholder" for="cost_percent">Cost %<span class="text-danger">*</span></label>
 
-   
+    </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <input type="text" class="form-control ipt_val input_with_ui mndatory_fld"  id="prd_mrp" placeholder="Mrp">
+    <div class="form-group">
+
+    <input type="text" class="form-control ipt_val input_with_ui mndatory_fld i_decimal " id="prd_mrp" placeholder="">
+    <label class="form-control-placeholder" for="prd_mrp">Mrp <span class="text-danger">*</span></label>
     <div class="text-danger error_txt" id="prd_mrp_error"></div>
-    
+    </div>
     </div>
                            
                             </div>
@@ -304,7 +552,7 @@
 <div class="btn-group" role="group" aria-label="Basic example">
 
 
-<button type="button" class="btn btn-sm btn-warning ml-1 input_with_ui " onclick="add_product_vld();">Save</button>
+<button type="button" class="btn btn-sm btn-warning ml-1 input_with_ui " onclick="add_product_vld();">Add</button>
 
 <button type="button" class="btn btn-sm btn-info ml-1" onclick="reset_product_form();">Reset</button>
 
@@ -377,8 +625,9 @@
         </div>
     </div>
 </div>
-
+@include('common.batch_nd_sub_gp_mdl')
 <script>
+  
 
 function open_add_prd_mdl() {
     $("#addProductModal").modal('show');
@@ -419,7 +668,7 @@ function open_add_prd_mdl() {
 $("#product_Code").on('keydown', function(e) {
 
 
-if(e.keyCode==32){
+if(e.keyCode==32 || e.keyCode==13){
 
     e.preventDefault();
 if($("#product_Code").val().trim()!=""){
@@ -432,6 +681,16 @@ if($("#product_Code").val().trim()!=""){
    
 }
 
+});
+
+
+$(".i_decimal").on("input", function(evt) {
+  var self = $(this);
+  self.val(self.val().replace(/[^0-9.]/g, ''));
+  if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which > 57)) 
+  {
+    evt.preventDefault();
+  }
 });
 
 }
@@ -627,6 +886,9 @@ function reset_product_form(){
     $("#product_Code").focus();
     $("#pmdl_hidden_status").val(0);
     $("#pmdl_row_id").val(0);
+    $("#prd_taxperc").val(0);
+    $("#prd_taxperc").attr('prd_tax_code',0);
+
    
 
 }
@@ -641,6 +903,8 @@ function add_product_vld(){
     if($("#product_Code").val().trim()==""){
 
         $("#product_Code_error").text("Please Enter Product Code");
+        // $("#product_Code").focus().click();
+        
         status=1;
         return false;
 
@@ -649,6 +913,7 @@ function add_product_vld(){
     if($("#product_Code").attr('prod_id')=="0"||$("#product_Code").attr('prod_id')==""){
 
         $("#product_Code_error").text("Please Enter Product Code");
+        // $("#product_Code").focus().click();
         status=1;
         return false;
 
@@ -659,6 +924,7 @@ function add_product_vld(){
     if($("#pro_batch_gp").val().trim()==""){
 
         $("#pro_batch_gp_error").text("Please Enter Batch Group");
+        // $("#pro_batch_gp").focus().click();
         status=1;
         return false;
 
@@ -667,6 +933,7 @@ function add_product_vld(){
     if($("#pro_batch_sub_sp").val().trim()==""){
 
         $("#pro_batch_sub_sp_error").text("Please Enter Sub Group");
+        // $("#pro_batch_sub_sp").focus().click();
         status=1;
         return false;
 
@@ -675,6 +942,7 @@ function add_product_vld(){
     if($("#pro_batch_gp").attr('batch_catid')=="0"||$("#pro_batch_gp").attr('batch_catid')==""){
 
         $("#pro_batch_gp_error").text("Please Enter Batch Group");
+
         status=1;
         return false;
 
@@ -683,6 +951,7 @@ function add_product_vld(){
     if($("#pro_batch_sub_sp").attr('batch_subcatid')=="0"||$("#pro_batch_sub_sp").attr('batch_subcatid')==""){
 
         $("#pro_batch_sub_sp_error").text("Please Enter Sub Group");
+            // $("#pro_batch_sub_sp").focus().click();
         status=1;
         return false;
 
@@ -695,6 +964,7 @@ function add_product_vld(){
 if($("#prd_rate").val().trim()==""||$("#prd_rate").val().trim()=='0'){
 
 $("#prd_rate_error").text("Please Enter Rate");
+// $("#prd_rate").focus().click();
 status=1;
 return false;
 
@@ -702,6 +972,7 @@ return false;
 if($("#prd_qty").val().trim()==""||$("#prd_qty").val().trim()=='0'){
 
 $("#prd_qty_error").text("Please Enter Quantity");
+// $("#prd_qty").focus().click();
 status=1;
 return false;
 
@@ -710,6 +981,7 @@ return false;
 if($("#prd_mrp").val().trim()==""||$("#prd_mrp").val().trim()=='0'){
 
 $("#prd_mrp_error").text("Please Enter Mrp");
+// $("#prd_mrp").focus().click();
 status=1;
 return false;
 
@@ -726,6 +998,7 @@ return false;
 
 function save_product_po(){
 
+    $(".btn").attr('disabled',true);
     row_id=$("#pmdl_row_id").val();
     hidden_status=$("#pmdl_hidden_status").val();
 
@@ -786,7 +1059,7 @@ function save_product_po(){
           
   },
         success:function(response){
-        
+            $(".btn").attr('disabled',false);
         data=response;
      
         flag=data[0]['Result_Status'];
@@ -800,7 +1073,8 @@ function save_product_po(){
             }
             load_products_of_po();
         }
-        alert(msg);
+
+        custom_alert_txt(msg,flag);
      
 
 
@@ -808,6 +1082,8 @@ function save_product_po(){
 
         },
         error: function(xhr) {
+            $(".btn").attr('disabled',false);
+
                             if (xhr.status === 422) {
                                 var errors = xhr.responseJSON.errors;
                                 $.each(errors, function(key, value) {
@@ -850,7 +1126,7 @@ function calculate_cost(){
 
  prd_cost_perc=parseFloat($("#prd_value").val())*parseFloat(tax_perc)/100;
         $("#prd_cost").val((parseFloat($("#prd_value").val())+prd_cost_perc));
-        // alert((parseFloat($("#prd_value").val())+prd_cost_perc))
+        // CustomAlert((parseFloat($("#prd_value").val())+prd_cost_perc))
     }
 }
 
@@ -875,12 +1151,12 @@ $('.input-text,.form-control').on('keyup', function() {
 function load_brnch_split(){
 
 if($("#pmdl_row_id").val()==""||$("#pmdl_row_id").val()==0){
-    alert("Select Product First..");
+    CustomAlert("Select Product First..");
     return false;
     
 }
 if($("#pmdl_batch_code").val()==""||$("#pmdl_batch_code").val()==0){
-    alert("Select Product First..");
+    CustomAlert("Select Product First..");
     return false;
     
 }
@@ -913,13 +1189,14 @@ $(data).each(function(key,val){
         qty=parseFloat(qty).toFixed(2);
     }
     else{
-        qty='';
+        qty='0';
+
     }
 
 tr+='<tr class="brnch_split_tr" branch_id="'+val['BranchID']+'">';
 tr+='<td>'+val['Branch']+'</td>';
 
-tr+='<td><input style="width: 75px;" type="number" value="'+qty+'" class="split_qty_td" min="0" class="form-control" placeholder=""></td>';
+tr+='<td><input style="width: 75px;" type="number" value="'+qty+'" class="split_qty_td i_decimal" onkeypress="return isDecimalKey(event);"  min="0" placeholder=""></td>';
 tr+='<td>&nbsp;</td>';
 tr+='<td>&nbsp;</td>';
 tr+='<td>&nbsp;</td>';
@@ -932,7 +1209,7 @@ $("#branchSplitTableBody").html(tr);
         
 
        }else{
-        alert("No Data Found");
+        CustomAlert("No Data Found");
         return false;
        }
    
@@ -942,11 +1219,20 @@ $("#branchSplitTableBody").html(tr);
                             if (xhr.status === 422) {
                                 var errors = xhr.responseJSON.errors;
                                 $.each(errors, function(key, value) {
-                                    $('#_error').text(value[0]);                        });
+                                    $('#_error').text(value[0]);                       
+                                 });
                             }
                         }
         });
 
+     
+        
+
+}
+
+
+
+function tr_click_pdt(){
 
 }
 
@@ -963,6 +1249,8 @@ function reset_branch_split(){
 
 function save_branch_split_qty(){
 
+
+    $(".btn").attr('disabled',true);
     barr=[];
 
     prd_qty=parseFloat($("#prd_qty").val());
@@ -1005,7 +1293,7 @@ if(prd_qty>0 && spt_qty>0 && spt_qty==prd_qty){
         },
         success:function(response){
          data=response;
-     
+         $(".btn").attr('disabled',false);
         flag=data[0]['Result_Status'];
         msg=data[0]['Remarks'];
         if(flag==1){
@@ -1014,7 +1302,8 @@ if(prd_qty>0 && spt_qty>0 && spt_qty==prd_qty){
             reset_product_form();
             reset_branch_split();
         }
-        alert(msg);
+        custom_alert_txt(msg,flag);
+        // CustomAlert(msg);
         
         },
         error: function(xhr) {

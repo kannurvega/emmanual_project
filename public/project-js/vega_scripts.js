@@ -296,7 +296,7 @@ $("#list_tbl").html(res);
 
   }catch(err) {  
 
-    console.log(err);
+    // console.log(err);
     
 }
 
@@ -405,6 +405,24 @@ $(".i_decimal").on("input", function(evt) {
     evt.preventDefault();
   }
 });
+
+
+
+function isDecimalKey(evt) {
+  var charCode = (evt.which) ? evt.which : event.keyCode
+  if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+      return false;
+  return true;
+}
+function isNumberKey(evt) {
+
+  var charCode = (evt.which) ? evt.which : event.keyCode
+  if(charCode > 31 && (charCode < 48 || charCode > 57))
+      return false;
+  return true;
+
+}
+
 
 $(".i_numeric").on("input", function(evt) {
 
@@ -541,6 +559,7 @@ var btn_col = [];
 show_last_total=false;
 var col_typ = [];
 var status_col=[];
+var bg_arr_tr=[];
 
 fn='';
 htm = '';
@@ -567,7 +586,7 @@ tbl_data = data;
 keys = Object.keys(tbl_data[0]);
 
 
-htm += '<div class="tbl_dv" style="border:1px solid ' + bg_arr_clr[0] + ';"><table class="table table-bordereds  responsive-utilities jambo_table" id="rec_tbl" ><thead style="color:#514a4a;background:#bdbd09e8;">';
+htm += '<div class="tbl_dv" style="border:1px solid ' + bg_arr_clr[0] + ';"><table class="table table-bordereds  responsive-utilities jambo_table" id="rec_tbl" ><thead style="color:#514a4a;background:#f1f1e0e8;">';
 htm += '<tr >';
 // htm+='<th style="width:1%;">Sl</th>';
 var col_totals = Array(keys.length).fill(0);
@@ -596,6 +615,11 @@ for (k = 0; k < keys.length; k++) {
       col_typ.push(k + 'I');
 
   }
+  else if (fst == 'D') {
+      col_typ.push(k + 'D');
+
+  }
+  
 
   var rightSide = splitKey[splitKey.length - 1];
   txt_alg = 'center';
@@ -641,8 +665,17 @@ for (k = 0; k < keys.length; k++) {
     disp_colum.push(k);
   }
 
+  if(keys[k]=='bg_clr')
+    {
+
+      bg_arr_tr.push(k);
+
+  }
+
 
 }
+
+
 for(k=0;k<=ad_cnt;k++){
   htm+='<th style="width:3%;">&nbsp;</th>';
 }
@@ -721,11 +754,24 @@ if (last_gp_name != tbl_data[i]['GPNAME']) {
 btn_str='';
 
   var x =k;
-  htm += '<tr class="dynmc_tr_tbl" >';
+
+
+
+  
   txt_alg = 'center';
+  tr_hg_cls='';
   // htm+='<td>'+x+'</td>';
   new_data = Object.values(tbl_data[i]);
 
+
+//  if(new_data[status_col[0]]==1){
+//   tr_hg_cls=new_data[bg_arr_tr[0]];
+//  }else{
+//   tr_hg_cls=new_data[bg_arr_tr[0]];
+
+//  }
+ tr_hg_cls=new_data[bg_arr_tr[0]];
+  htm += '<tr class="dynmc_tr_tbl" style="background: '+tr_hg_cls+';" >';
 
   for (j = 0; j < new_data.length; j++) {
 
@@ -755,7 +801,7 @@ btn_str='';
               subtotals[j] += parseFloat(last_val) || 0;
 
 
-
+          }
 
               last_val = last_val;
 
@@ -771,20 +817,36 @@ btn_str='';
                   last_val = Math.trunc(last_val);
 
               }
+              else if (col_typ.includes(j + 'D')) {
+
+                
+                const date = new Date(last_val);
+
+                
+                const day = String(date.getDate()).padStart(2, '0'); 
+                const month = date.toLocaleString('default', { month: 'short' }); 
+                const year = date.getFullYear();
+          
+           
+                last_val= `${day}-${month}-${year}`;
+
+            }
 
 
-
-          }
+        
 
           if(status_col.includes(j)){
 
             if(last_val==0){
 
-              last_val='Zero';
+              last_val='&nbsp;';
+              tr_hg_cls='';
 
             }else{
+              tr_hg_cls='bg-success';
+        
+              last_val='<i class="fa fa-check" style="color:green;"></i>';
 
-              last_val='One';
             }
 
   
@@ -795,9 +857,9 @@ btn_str='';
 fnctn="tr_click(this,'"+new_data[0]+"');";
 fnct2="tr_dbl_click(this,'"+new_data[0]+"');";
 
+ 
 
-
-          htm += '<td style="text-align:' + txt_alg + ';"  ondblclick='+fnct2+' onclick='+fnctn+'>' + last_val + '</td>';
+          htm += '<td   style="text-align:' + txt_alg + ';"  ondblclick='+fnct2+' onclick='+fnctn+'>' + last_val + '</td>';
       }
 
 
@@ -821,8 +883,8 @@ fnct2="tr_dbl_click(this,'"+new_data[0]+"');";
 
 
 $(".additional_btn").each(function(key,val){
-
-  
+sts_k=status_col[0];
+sts=new_data[sts_k];
 r="'"+new_data[j]+"'";
 
       if($(val).attr('value')=='Edit'){
@@ -847,17 +909,20 @@ r="'"+new_data[j]+"'";
 
 
     }
-
-    
+   
+   
+   
 
   }
+
+  // htm = htm.replace('dynmc_tr_tbl', 'dynmc_tr_tbl '+tr_hg_cls);
 
   htm+= btn_str;
  
  
 
   htm += '</tr>';
-
+  
   
   gp_name = tbl_data[i]['GPNAME'];
   $("#thead_tbl").html(htm)
@@ -912,7 +977,7 @@ if(show_last_total==false){
 
 }
 
-htm += '<tr style="background: #ca8757;color: #1c1818;font-weight: bold;'+dt+'">';
+htm += '<tr style="background: #f1f1e0e8;color: #1c1818;font-weight: bold;'+dt+'">';
 
 for (k = 0; k < keys.length; k++) {
   if (disp_colum.includes(k)) {

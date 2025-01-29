@@ -22,7 +22,7 @@ $Staff_Pwd=trim($request->Staff_Pwd);
 $Staff_Code=trim($request->Staff_Code);
 $Sys_CompanyID=$request->Sys_CompanyID;
 
-$result = DB::select("Wb_Proc_StaffLogin '$Sys_CompanyID','$Staff_Code','$Staff_Pwd'");
+$result = DB::select("SET NOCOUNT ON; EXEC Wb_Proc_StaffLogin '$Sys_CompanyID','$Staff_Code','$Staff_Pwd'");
 
 if(sizeof($result)==1){
  session([
@@ -43,5 +43,17 @@ else{
 
     }
 }
+
+
+
+
+
+public function logout(Request $request){
+
+    session()->flush();
+    return redirect()->route('login');
+
+}
+
 
 }

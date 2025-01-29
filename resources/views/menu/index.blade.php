@@ -2,10 +2,10 @@
 
 
 $menuItems = [
-    ['module_url' => 'purchase_order/12', 'module_prefix' => 'PO', 'menu_type' => 2, 'module_name' => 'Purchase Order'],
-    ['module_url' => 'batchGroup/2', 'module_prefix' => 'BG', 'menu_type' => 2, 'module_name' => 'Batch Group'],
-    ['module_url' => 'subGroup/5', 'module_prefix' => 'SG', 'menu_type' => 2, 'module_name' => 'Sub Group'],
-    ['module_url' => 'contact', 'module_prefix' => 'prefix4', 'menu_type' => 2, 'module_name' => 'Contact']
+    ['module_id' => '12','module_url' => 'purchase_order', 'module_prefix' => 'PO', 'menu_type' => 2, 'module_name' => 'Purchase Order'],
+    ['module_id' => '2','module_url' => 'batchGroup', 'module_prefix' => 'BG', 'menu_type' => 2, 'module_name' => 'Batch Group'],
+    ['module_id' => '5','module_url' => 'subGroup', 'module_prefix' => 'SG', 'menu_type' => 2, 'module_name' => 'Sub Group'],
+    ['module_id' => '8','module_url' => 'grouped_report', 'module_prefix' => 'rp', 'menu_type' => 2, 'module_name' => 'Report']
 ];
 
 // Loop through dummy data:
@@ -14,7 +14,7 @@ echo '<li><a href="/backend_index"><i class="fa fa-users fa-lg"></i> Dashboard</
 echo '</ul>';
 $menu_type = 0;
 foreach($menuItems as $menuItem) { 
-    $module_url = url('/') . '/' . $menuItem['module_url']. '/' . $menuItem['module_prefix'];
+    $module_url = url('/') . '/' . $menuItem['module_url']. '/'. $menuItem['module_id'].'/'. $menuItem['module_prefix'];
     if($menuItem['menu_type'] != $menu_type) {
         echo '</ul>';
 

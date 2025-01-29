@@ -4,7 +4,7 @@
 @section('page-content')
 
 
-<link rel="stylesheet" href="{{ asset('project-css/purchase_order.css') }}">
+<link rel="stylesheet" href="{{ asset('project-css/purchase_order.css') }}?v=3.5.0">
 <input type="hidden" value="Edit" class="additional_btn" color="bg-warning" btn_clk="set_edit_form">
 <input type="hidden" value="Delete" class="additional_btn" color="bg-danger" btn_clk="set_delete_form">
  <section>
@@ -24,28 +24,30 @@
 
 <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" id="p1" href="#pu_ord_hdr_section" role="tab" aria-controls="pills-product_det" aria-selected="true">Purchase Order</a>
+            <a class="nav-link active" data-toggle="pill" id="p1" href="#pu_ord_hdr_section" role="tab" aria-controls="pills-product_det" aria-selected="true">Purchase Order<i class="fa fa-database" aria-hidden="true"></i>
+            </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" id="p2" href="#pu_ord_detl" role="tab" onclick="load_products_of_po();"  aria-controls="pills-size_nd_qty" aria-selected="false">Products</a>
+            <a class="nav-link" data-toggle="pill" id="p2" href="#pu_ord_detl" role="tab" onclick="load_products_of_po();"  aria-controls="pills-size_nd_qty" aria-selected="false">Products<i class="fa fa-cube" aria-hidden="true"></i>
+            </a>
           </li>
        <span style="text-align: right;width: 39%;" id="po_no_txt"></span>
-       <span style="text-align: right;width: 20%;" id="po_no_series"></span>
+       <span style="text-align: right;" id="po_no_series"></span>
       
         </ul>
 </div>
-<div class="tab-content mt-2">
+<div class="tab-content mt-">
 <div id="pu_ord_hdr_section" class="tab-pane fade show active" role="tabpanel" aria-labelledby="pu_ord_hdr_section-tab">
 <div id="pu_ord_hdr">
     <div class="row">
 
 
-    <div class="col-lg-1 col-md-3 col-sm-2">
+    <div class="col-lg-2 col-md-2 col-sm-2">
 
 <div class="form-group row">
 
-<div class="col-sm-12 col-md-5 col-lg-12 col-5">
+<div class="col-sm-12 col-md-12 col-lg-12 col-5">
   <input type="text" class="form-control  vldt_splr input_with_ui date_class"  value="{{date('d-M-Y')}}" id="t_date" party_id="0">
   <div class="text-danger error_txt" id="t_date_error"></div>
 
@@ -59,11 +61,11 @@
 
 </div>
 
-  <div class="col-lg-3 col-md-3 col-sm-7">
+  <div class="col-lg-4 col-md-4 col-sm-4">
 
 <div class="form-group row">
 
-<label for="sup_name" class="col-sm-3 col-md-3 col-lg-3  col-form-label text-left">Supplier <span class="text-danger">*</span></label>
+<label for="sup_name" class="col-sm-3 col-md-4 col-lg-3  col-form-label text-left hdr_lbl">Supplier <span class="text-danger">*</span></label>
 <div class="col-sm-8 col-md-8 col-lg-8 col-8">
   <input type="text" class="form-control  validate ser-sup_hdr input_text" id="sup_name" sup_id="0" onclick="open_new_supplier_modal();">
   <div class="text-danger error_txt" id="sup_name_error"></div>
@@ -80,14 +82,14 @@
 
 
 
-<div class="col-lg-2 col-md-4 col-sm-4 col-4">
+<div class="col-lg-3 col-md-3 col-sm-3 col-4">
 
 <div class="col-lg-12 col-md-12 col-sm-12">
 
 <div class="form-group row">
 
-<label for="sup_gst" class="col-sm-3 col-md-3 col-lg-3  col-form-label text-left">GSTIN</label>
-<div class="col-sm-8 col-md-5 col-lg-9 col-5">
+<label for="sup_gst" class="col-sm-3 col-md-3 col-lg-3  col-form-label text-left hdr_lbl">GSTIN</label>
+<div class="col-sm-8 col-md-9 col-lg-9 col-5">
 <input type="text" class="form-control vldt_splr input_with_ui input_text" value="" id="sup_gst" readonly party_id="0">
 <div class="text-danger error_txt" id="sup_gst_error"></div>
 
@@ -102,11 +104,11 @@
 </div>
 
 
-<div class="col-lg-3 col-md-3 col-sm-4">
+<div class="col-lg-3 col-md-3 col-sm-3">
 
 <div class="form-group row">
 
-<label for="NOTES" class="col-sm-3 col-md-3 col-lg-3  col-form-label text-left">Notes</label>
+<label for="NOTES" class="col-sm-3 col-md-3 col-lg-3  col-form-label text-left hdr_lbl">Ref.</label>
 <div class="col-sm-8 col-md-8 col-lg-8 col-8">
   <input type="text" class="form-control  validate ser-sup_hdr vldt_splr input_with_ui input_text" id="notes" party_id="0" >
   <div class="text-danger error_txt" id="NOTES_error"></div>
@@ -121,11 +123,11 @@
 
 </div>
 
-<div class="col-lg-3 col-md-3 col-sm-4">
+<div class="col-lg-2 col-md-6 col-sm-3 d-none">
 
-<div class="form-group row">
+<div class="form-group row d-none">
 
-<label for="po_code" class="col-sm-4 col-md-3 col-lg-3  col-form-label text-left">PO Code</label>
+<label for="po_code" class="col-sm-4 col-md-3 col-lg-3  col-form-label text-left hdr_lbl">PO Code</label>
 <div class="col-sm-8 col-md-5 col-lg-5 col-5">
   <input type="text" class="form-control vldt_splr input_with_ui input_text" value="" id="po_code" readonly party_id="0">
   <div class="text-danger error_txt" id="po_code_error"></div>
@@ -141,35 +143,19 @@
    
      
 </div>
-<div class="row mt-1">
- 
-<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
 
-
-<div class="btn-group" role="group" aria-label="Basic example">
-  <!-- <button type="button" class="btn btn-sm btn-success ml-1">New</button> -->
-  <button type="reset" class="btn btn-sm btn-secondary ml-1" onclick="clear_pu_hdr();">Reset</button>
-  <button type="button" class="btn btn-sm btn-success ml-1 input_with_ui" onclick="save_pu_header_vld();">Save</button>
-
-</div>
-  <button type="button" onclick="load_product_detls();" class="btn btn-sm btn-warning ml-5">Add Product</button>
-  <div></div>
-</div>
-
-
-</div>
-<div class="row mt-2">
+<div class="row " style="font-size:12px;">
  <hr>
-<div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+<div class="col-lg-6 col-md-6 col-sm-6 col-6 text-center pt-3">
 <div class="row">
-<div class="col-lg-2 col-md-2 col-sm-3 col-2">
+<div class="col-lg-4 col-md-4 col-sm-5 col-2">
   <div class="row">
 
   <label for="" class="col-lg-3 col-sm-3 col-md-3 col-3">
     From
   </label>
   <div class="col-lg-9 col-sm-9 col-md-9 col-9">
-  <input type="text" class="form-control  vldt_splr input_with_ui date_class"  onchange="load_purchase_order_list();"value="<?php echo date('d-M-Y', strtotime('-30 days')); ?>" id="frm_date" >
+  <input style="height: 23px;" type="text" class="form-control   date_class"  onchange="load_purchase_order_list();"value="<?php echo date('d-M-Y', strtotime('-30 days')); ?>" id="frm_date" >
 
   </div>
   </div>
@@ -177,7 +163,7 @@
 
 
 </div>
-<div class="col-lg-2 col-md-2 col-sm-3 col-2">
+<div class="col-lg-4 col-md-4 col-sm-5 col-2">
 
 <div class="row">
 
@@ -185,15 +171,15 @@
   TO
 </label>
 <div class="col-lg-9 col-sm-9 col-md-9 col-9">
-<input type="text" class="form-control  vldt_splr input_with_ui date_class" onchange="load_purchase_order_list();" value="{{date('d-M-Y')}}" id="till_date" >
+<input style="height: 23px;" type="text" class="form-control   date_class" onchange="load_purchase_order_list();" value="{{date('d-M-Y')}}" id="till_date" >
 
 </div>
 </div>
 </div>
-<div class="col-lg-1 col-md-1 col-sm-2 col-1">
+<div class="col-lg-2 col-md-3 col-sm-2 col-1">
 
 
-<select name="" class="form-control" id="sel_sts" onchange="filter_po_list();">
+<select style="height: 23px;" name="" class="form-control" id="sel_sts" onchange="filter_po_list();">
 
 <option value="0" selected>All</option>
 <option value="1">Pending</option>
@@ -206,6 +192,25 @@
 </div>
 
 
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+<div class="row mt-3">
+ 
+<div class="col-lg-12 col-md-12 col-sm-12 col-12 ">
+
+
+<div class="btn-group" role="group" aria-label="Basic example">
+  <!-- <button type="button" class="btn btn-sm btn-success ml-1">New</button> -->
+  <button type="reset" class="btn btn-md btn-secondary ml-1" onclick="clear_pu_hdr();">Reset</button>
+  <button type="button" class="btn btn-md btn-success ml-1 input_with_ui" onclick="save_pu_header_vld();">Save</button>
+
+</div>
+  <!-- <button type="button" onclick="load_product_detls();" class="btn btn-sm btn-warning ml-5">Add Product</button> -->
+  <div></div>
+</div>
+
+
+</div>
 </div>
 
 
@@ -276,7 +281,7 @@ Code
 
 
 <div id="pu_ord_detl" class="tab-pane fade" role="tabpanel" aria-labelledby="pu_ord_detl-tab">
-<button type="button" onclick="load_product_detls();" class="btn btn-sm btn-warning ml-5">Add Product</button>
+<button type="button" onclick="load_product_detls();" class="btn btn-sm btn-warning ml-5">Add New Product</button>
 
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-12" id="po_product_list_dv">
@@ -286,8 +291,14 @@ Code
   </div>
 
 
+<div class="container">
+<button type="button" class="btn btn-sm btn-success ml-5 fixed-confirm-btn " id="confirmButton" onclick="validate_po_order();">Confirm Order
 
 
+
+</button>
+
+</div>
 </div>
 
 </div>
@@ -326,8 +337,10 @@ Code
 
 
 
-<script src="{{ asset('project-js/purchase_order_scripts.js') }}?v=2.4.0"></script>
+<script src="{{ asset('project-js/purchase_order_scripts.js') }}?v=4.2.0"></script>
 
+<script>
 
+</script>
 @endsection
 

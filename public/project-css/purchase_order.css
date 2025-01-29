@@ -10,9 +10,9 @@
     }
     
     #pu_ord_hdr{
-        height:22vh;
+        height:20vh;
         border-bottom:2px solid black;
-        padding-top:20px;
+      
         background: #242322;
       color: wheat;
     }
@@ -35,11 +35,14 @@
 
     #po_no_series{
       text-align: right;
-  width: 10%;
+  /* width: 10%; */
   font-size: 16px;
   color: #2d12b0;
   font-weight: bold;
+  padding-left:5px;
+
     }
+ 
   
 
     #rec_tbl th{
@@ -90,8 +93,16 @@ font-size: 12px;
       }
       .dynmc_tr_tbl:hover{
         cursor:pointer;
-        background:grey;
-        color:white;
+     font-size:13px;
+        color:white !important;
+        font-weight: bold !important;
+
+      }
+      .dynmc_tr_tbl_pdt:hover{
+        cursor:pointer;
+     font-size:13px;
+        color:rgb(12, 11, 11) !important;
+        font-weight: bold !important;
 
       }
       #po_no_txt{
@@ -101,7 +112,128 @@ font-size: 12px;
   font-weight: bold;
   color: #ac225c;
       }
+
       .tr_selected{
-        background:grey;
-        color:white;
+     font-size:13px;
+        color:white !important;
+        font-weight: bold !important;
+      }
+      .tr_selected_pdt{
+     font-size:13px;
+        color:rgb(17, 16, 16) !important;
+        font-weight: bold !important;
+      }
+
+      .nav-tabs .nav-link:nth-child(1){
+
+  width: 300px;
+  text-align: center;
+      }
+      #p2{
+        font-weight: bold;
+
+      }
+  
+      .fixed-confirm-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: linear-gradient(135deg, #28a745, #218838);
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; /* Spacing for spinner */
+        overflow: hidden;
+      }
+    
+      .fixed-confirm-btn:hover {
+        background: linear-gradient(135deg, #218838, #1e7e34);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+      }
+    
+      .fixed-confirm-btn:active {
+        transform: scale(0.98);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+    
+      .fixed-confirm-btn.loading {
+        width: 180px; 
+        justify-content: space-between; 
+      }
+    
+      .spinner {
+        border: 3px solid #fff; 
+        border-top: 3px solid #28a745; 
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        animation: spin 0.8s linear infinite;
+      }
+    
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .hdr_lbl{
+        font-size:14px;
+      }
+
+
+      @media (max-width: 768px) {
+        table {
+          font-size: 10px;
+        }
+        .dynmc_tr_tbl:hover{
+          cursor:pointer;
+       font-size:10px;
+          color:white !important;
+          font-weight: bold !important;
+  
+        }
+        .dynmc_tr_tbl_pdt:hover{
+          cursor:pointer;
+       font-size:10px;
+          color:rgb(12, 11, 11) !important;
+          font-weight: bold !important;
+  
+        }
+        .hdr_lbl{
+          font-size:10px;
+        }
+        .tr_selected{
+          font-size:10px;
+             color:white !important;
+             font-weight: bold !important;
+           }
+           .tr_selected_pdt{
+          font-size:10px;
+             color:rgb(17, 16, 16) !important;
+             font-weight: bold !important;
+           }
+      }
+      @media (min-width: 576px) {
+        .modal-dialog {
+          max-width: none !important;
+          margin: 1.75rem auto;
+        }
+      }
+      @media (min-width: 992px) {
+        .modal-lg {
+          max-width: 800px !important;
+        }
       }

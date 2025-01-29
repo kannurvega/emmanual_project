@@ -218,6 +218,15 @@ Wb_Proc_Get_PO_Batch_Details '','PO20250116001000000004','00114',0
 
 
 
+[dbo].[Wb_Proc_Save_POStatus]--- for verification
+@POComID Varchar(10), 
+@POCode Varchar(22),
+@PODate Date,
+@POBuyerID Integer, 
+@POSupplierCode Varchar(22),
+@POStatus Integer,	----1 Verified
+@User Varchar(50),
+@Loc Integer
 
 
 

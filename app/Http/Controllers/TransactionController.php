@@ -59,9 +59,9 @@ public function save_product_po(Request $request){
     $pro_batch_sub_sp=$request->pro_batch_sub_sp;
     $buyer_id=$request->buyer_id;
     $sup_id=$request->sup_id;
-    $prd_hsn=$request->prd_hsn;
+    $prd_hsn=$request->prod_hsn;
     $prd_tax_code=$request->prd_tax_code;
-    $prd_ean_code=$request->prd_ean_code;
+    $prd_ean_code=$request->prod_ean;
     $prd_brand=$request->prd_brand;
     $prd_fit=$request->prd_fit;
     $prd_shape=$request->prd_shape;
@@ -132,6 +132,28 @@ public function save_branch_split_qty(Request $request){
 
 
 }
+
+
+
+
+
+public function validate_po_order(Request $request){
+
+    $staffName = Session::get('Staff_Name');
+    $Staff_ID = Session::get('Staff_ID');
+    
+    $Sys_CompanyID = Session::get('Sys_CompanyID');
+    $po_code=$request->po_code;
+    $sup_id=$request->sup_id;
+    $t_date=$request->t_date;
+    $status=1;
+    $branchID = Session::get('Branch_ID');
+    $result = $this->dbController->run_db_qry("SET NOCOUNT ON; EXEC Wb_Proc_Save_POStatus '$Sys_CompanyID','$po_code','$t_date',$Staff_ID,'$sup_id',$status,'$staffName',$branchID");
+
+return $result;
+    
+}
+
 
 
 
