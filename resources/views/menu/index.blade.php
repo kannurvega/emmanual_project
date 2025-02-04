@@ -1,14 +1,6 @@
 <?php 
 
 
-$menuItems = [
-    ['module_id' => '12','module_url' => 'purchase_order', 'module_prefix' => 'PO', 'menu_type' => 2, 'module_name' => 'Purchase Order'],
-    ['module_id' => '2','module_url' => 'batchGroup', 'module_prefix' => 'BG', 'menu_type' => 2, 'module_name' => 'Batch Group'],
-    ['module_id' => '5','module_url' => 'subGroup', 'module_prefix' => 'SG', 'menu_type' => 2, 'module_name' => 'Sub Group'],
-    ['module_id' => '8','module_url' => 'grouped_report', 'module_prefix' => 'rp', 'menu_type' => 2, 'module_name' => 'Report']
-];
-
-// Loop through dummy data:
 echo '<ul>';
 echo '<li><a href="/backend_index"><i class="fa fa-users fa-lg"></i> Dashboard</a></li>';
 echo '</ul>';
@@ -31,7 +23,7 @@ foreach($menuItems as $menuItem) {
     }
 }
 
-// Additional dummy data for logout
+
 echo '<ul>';
 echo '<li><a href="/logout"><i class="fa fa-users fa-lg"></i> Logout</a></li>';
 echo '</ul>';

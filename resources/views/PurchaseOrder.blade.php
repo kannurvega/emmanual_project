@@ -4,7 +4,7 @@
 @section('page-content')
 
 
-<link rel="stylesheet" href="{{ asset('project-css/purchase_order.css') }}?v=3.5.0">
+<link rel="stylesheet" href="{{ asset('project-css/purchase_order.css') }}?v=4.4.0">
 <input type="hidden" value="Edit" class="additional_btn" color="bg-warning" btn_clk="set_edit_form">
 <input type="hidden" value="Delete" class="additional_btn" color="bg-danger" btn_clk="set_delete_form">
  <section>
@@ -24,12 +24,12 @@
 
 <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" id="p1" href="#pu_ord_hdr_section" role="tab" aria-controls="pills-product_det" aria-selected="true">Purchase Order<i class="fa fa-database" aria-hidden="true"></i>
+            <a class="nav-link active" data-toggle="pill" id="p1" href="#pu_ord_hdr_section" role="tab" aria-controls="pills-product_det" onclick="check_active_clr_navs();" aria-selected="true">Purchase Order &nbsp;<i class="fa fa-database" aria-hidden="true"></i>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" id="p2" href="#pu_ord_detl" role="tab" onclick="load_products_of_po();"  aria-controls="pills-size_nd_qty" aria-selected="false">Products<i class="fa fa-cube" aria-hidden="true"></i>
+            <a class="nav-link" data-toggle="pill" id="p2" href="#pu_ord_detl" role="tab" onclick="load_products_of_po();check_active_clr_navs();"  aria-controls="pills-size_nd_qty" aria-selected="false">Products &nbsp;<i class="fa fa-cube" aria-hidden="true"></i>
             </a>
           </li>
        <span style="text-align: right;width: 39%;" id="po_no_txt"></span>
@@ -129,7 +129,7 @@
 
 <label for="po_code" class="col-sm-4 col-md-3 col-lg-3  col-form-label text-left hdr_lbl">PO Code</label>
 <div class="col-sm-8 col-md-5 col-lg-5 col-5">
-  <input type="text" class="form-control vldt_splr input_with_ui input_text" value="" id="po_code" readonly party_id="0">
+  <input type="text" class="form-control vldt_splr  input_text" value="" id="po_code" readonly party_id="0">
   <div class="text-danger error_txt" id="po_code_error"></div>
 
 
@@ -337,7 +337,7 @@ Code
 
 
 
-<script src="{{ asset('project-js/purchase_order_scripts.js') }}?v=4.2.0"></script>
+<script src="{{ asset('project-js/purchase_order_scripts.js') }}?v=4.6.0"></script>
 
 <script>
 

@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('table_autocomplete/alertify.min.css')}}" />
   
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dataTables.min.css') }}">
 
 
     
@@ -394,6 +395,7 @@ body {
 
 <!--Bottom Footer-->
     <div class="bottom section-padding text-center">
+<span class="text-white" style="float:left;">Vega Business Software</span>
 <span id="uid"></span>
 <span id="alt_text"></span>
 
@@ -425,19 +427,54 @@ body {
 <script src="{{ asset('js/bootstrap.min.js')}}" ></script>
  <script src="{{ asset('project-js/fetch_view_table.js')}}"></script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script> -->
          
     <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
    
 
     <script  src="{{ asset('js/UUID.js') }}" ></script>
     <script  src="{{ asset('js/client.min.js') }}" ></script>
-    <script src="{{ asset('project-js/vega_scripts.js')}}?v=2.7.0"></script>
+    <script  src="{{ asset('js/dataTables.min.js') }}" ></script>
+    <script  src="{{ asset('js/dataTables.buttons.js') }}" ></script>
+    <script  src="{{ asset('js/pdfmake.min.js') }}" ></script>
+    <script  src="{{ asset('js/vfs_fonts.js') }}" ></script>
+    <script  src="{{ asset('js/buttons.html5.min.js') }}" ></script>
+    <script  src="{{ asset('js/buttons.print.min.js') }}" ></script>
+
+    <script src="{{ asset('project-js/vega_scripts.js')}}?v=2.8.0"></script>
     
     @include('common.db_mdl')
 <script type="text/javascript">
   
+  function updateInternetStatus() {
+   
+        let statusDiv = document.getElementById("alt_text");
 
+        if (!navigator.onLine) {
+            statusDiv.innerHTML = "🔴 offline!";
+            statusDiv.style.color = "red";
+        } else {
+          
+            statusDiv.innerHTML = "🟢 online!";
+            statusDiv.style.color = "green";
+            setTimeout(() => {
+            statusDiv.innerHTML = "";
+        }, 3000);
+        }
+
+   
+     
+    }
+
+
+
+    window.addEventListener("offline", updateInternetStatus);
+
+
+    window.addEventListener("online", updateInternetStatus);
+
+    
+   //  document.addEventListener("DOMContentLoaded", updateInternetStatus);
 
 $( document ).ready(function() {
 

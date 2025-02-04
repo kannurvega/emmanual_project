@@ -36,6 +36,10 @@ Route::middleware('check_user_session')->group(function () {
     Route::get('/purchase_order/{id}/{typ}', [HomeController::class, 'purchase_order'])->name('purchase_order');
     Route::get('/subGroup/{id}/{typ}', [HomeController::class, 'subGroup'])->name('subGroup');
     Route::get('/batchGroup/{id}/{typ}', [HomeController::class, 'batchGroup'])->name('batchGroup');
+    Route::get('/purchase_ord_summary/{id}/{typ}', [HomeController::class, 'purchase_ord_summary'])->name('purchase_ord_summary');
+
+
+
     Route::post('/batch_nd_sub_grp_save', [DataController::class, 'batch_nd_sub_grp_save'])->name('batch_nd_sub_grp_save');
     Route::post('/fetch_table_view', [DataController::class, 'fetch_table_view'])->name('fetch_table_view');
     Route::post('/get_supplier_det', [DataController::class, 'get_supplier_det'])->name('get_supplier_det');

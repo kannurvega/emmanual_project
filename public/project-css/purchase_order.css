@@ -131,6 +131,7 @@ font-size: 12px;
       }
       #p2{
         font-weight: bold;
+        background: #e3c344;
 
       }
   
@@ -237,3 +238,22 @@ font-size: 12px;
           max-width: 800px !important;
         }
       }
+
+      #p1{
+
+    background: #242322;
+  color: wheat;
+}
+
+#p1.active{
+  background:none !important;
+  border:2px solid #242322 !important;
+  color:#242322 !important;
+}
+ 
+#p2.active{
+  background:none !important;
+  border:2px solid #e3c344 !important;
+  color: #171714 !important;
+}
+ 

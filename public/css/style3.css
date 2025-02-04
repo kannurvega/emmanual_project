@@ -257,6 +257,10 @@ width: 100%;
 }
 
 
+
+
+
+
 .btn_foot{
     position: fixed !important;
 bottom: 0 !important;
@@ -463,6 +467,13 @@ td{
       }
       .btn {
         padding: 3px;
+        font-size: 15px;
+      }
+      span{
+
+        font-size: 10px;
+      }
+      h3{
         font-size: 15px;
       }
   }

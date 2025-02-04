@@ -152,13 +152,6 @@ return response()->json($result);
 
 
 
-
-
-
-
-
-
-
 public function fetch_sp_nd_tbl(){
 
     $tables = DB::select("select name from sys.tables ORDER BY name;");

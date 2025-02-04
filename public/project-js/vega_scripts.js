@@ -437,7 +437,7 @@ $(document).on('keydown', '.input_with_ui', function (e) {
 
   if (e.which === 13 && $(".ui-autocomplete").is(":visible")==false ) {
 
-
+ 
 var index = $('.input_with_ui').index(this) + 1;
 
       $('.input_with_ui').eq(index).focus();
@@ -449,7 +449,7 @@ var index = $('.input_with_ui').index(this) + 1;
 $(".input_with_ui").keydown(function(e){
   if (e.keyCode == 13 && e.shiftKey)
   {
-      
+    
       var index = $('.input_with_ui').index(this) - 1;
 
 

@@ -13,7 +13,7 @@
 }
 
 #product_det{
-    background:#e6ceb0;
+    background:#ece29c;
 }
 #size_nd_qty{
     background: #46a5dd;
@@ -128,14 +128,37 @@ height:74vh;
 .plus-icon {
   line-height: 1;
 }
+
+.cost_rw{
+   background:#8666296b;border-radius:20px;
+   justify-content: center;
+}
+.error_txt{
+    white-space:nowrap;
+}
+.margin_lbl{
+    /* border-bottom: 2px solid white; */
+  font-weight: bold;
+  color: #221f1f;
+  letter-spacing: 2px;
+}
+.pdt_mdl.active {
+    background-color: #ffc107 !important; 
+    color: black !important;
+    
+}
+#sum_qty_split,#avail_qty{
+    font-weight: bold;
+    font-style:italic;
+}
 </style>
 
 <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-warning">
-                <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+            <div class="modal-header bg-warning" style="height:46px;">
+                <h6 class="modal-title" id="addProductModalLabel">Add Product</h6>
+                <button type="button" class="btn-close" onclick="reset_product_form();" data-dismiss="modal" aria-label="Close">X</button>
             </div>
             <div class="modal-body">
 
@@ -149,13 +172,13 @@ height:74vh;
       <div class="col-12 col-md-12 col-lg-12 col-sm-12" >
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" href="#product_det" role="tab" aria-controls="pills-product_det" aria-selected="true">Product <i class="fa fa-databse"></i></a>
+            <a class="nav-link active pdt_mdl" data-toggle="pill" href="#product_det" role="tab" aria-controls="pills-product_det" aria-selected="true">Product </a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" data-toggle="pill" href="#size_nd_qty" role="tab" aria-controls="pills-size_nd_qty" aria-selected="false">Size And Color</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" style="float:left;" onclick="load_brnch_split();" data-toggle="pill" href="#branch_split" role="tab" aria-controls="pills-branch_split" aria-selected="false">Branch Split</a>
+            <a class="nav-link pdt_mdl" id="brnch_split_tab"  style="float:left;" onclick="load_brnch_split();" data-toggle="pill" href="#branch_split" role="tab" aria-controls="pills-branch_split" aria-selected="false">Branch Split</a>
 
 <span><input type="checkbox" id="brnch_split_check"/></span>
 
@@ -424,7 +447,7 @@ height:74vh;
 <div class="">
 
 <div class="form-group">
-<input type="text" readonly class="form-control ipt_val input_with_ui " id="normalCode" placeholder="">
+<input type="text" readonly class="form-control ipt_val " id="normalCode" placeholder="">
 
 <label class="form-control-placeholder" for="normalCode">Batch</label>
 
@@ -500,7 +523,7 @@ height:74vh;
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-4">
     <div class="form-group">
-    <input type="text" class="form-control ipt_val input_with_ui " readonly id="prd_value" placeholder="">
+    <input type="text" class="form-control ipt_val  " readonly id="prd_value" placeholder="">
     <label class="form-control-placeholder" for="prd_value">Value <span class="text-danger">*</span></label>
 
 
@@ -516,11 +539,16 @@ height:74vh;
                            <div class="row mt-1">
 
                            <div class="col-lg-6 col-md-6 col-dm-6 col-6">
-                           <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <div class="form-group">
+                           <div class=" cost_rw text-center">
+                            <div class="text-center margin_lbl d-none">&nbsp;</div>
+                            <div class="row text-center" style="justify-content: center;">
 
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="prd_cost" readonly placeholder="">
+                
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+    <div class="form-group" >
+
+    <input type="text" class="form-control ipt_val   i_decimal " id="prd_cost" readonly placeholder="">
     <label class="form-control-placeholder" for="prd_cost">Cost</label>
 
     </div>
@@ -528,20 +556,21 @@ height:74vh;
 
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <div class="form-group">
-    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="cost_percent" placeholder="">
-    <label class="form-control-placeholder" for="cost_percent">Cost %<span class="text-danger">*</span></label>
+    <div class="form-group" >
+    <input type="text" class="form-control ipt_val input_with_ui  i_decimal " id="margin_perc" placeholder="">
+    <label class="form-control-placeholder" for="margin_perc">Margin %</label>
 
     </div>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3 col-3">
-    <div class="form-group">
+    <div class="form-group" >
 
-    <input type="text" class="form-control ipt_val input_with_ui mndatory_fld i_decimal " id="prd_mrp" placeholder="">
+    <input type="text" class="form-control ipt_val input_with_ui mndatory_fld i_decimal "  id="prd_mrp" placeholder="">
     <label class="form-control-placeholder" for="prd_mrp">Mrp <span class="text-danger">*</span></label>
     <div class="text-danger error_txt" id="prd_mrp_error"></div>
     </div>
     </div>
+</div>
                            
                             </div>
                            
@@ -589,6 +618,7 @@ height:74vh;
                         </table>
     </div>
         <div class="tab-pane fade" id="branch_split" role="tabpanel" aria-labelledby="branch_split-tab">
+            <div>Available Qty: <span id="avail_qty">0.00</span> &nbsp;&nbsp;<span style="float:right;"><button type="button" class="btn btn-sm btn-info" onclick="split_equally_qty();">Split Equal</button></span></div>
         <table class="table table-bordered" id="brnch_split_tbl">
                             <thead>
                                 <tr>
@@ -604,6 +634,13 @@ height:74vh;
                             <tbody id="branchSplitTableBody">
                              
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td id="sum_qty_splitt" class="text-right">0.00</td>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </tfoot>
                         </table>    
                         <div class="btn-group" role="group" aria-label="Basic example" style="float:right;">
 
@@ -633,7 +670,7 @@ function open_add_prd_mdl() {
     $("#addProductModal").modal('show');
     $('#addProductModal').on('shown.bs.modal', function () {
 
-   
+        
          $("#product_Code").focus().click(); 
     });
 
@@ -888,8 +925,10 @@ function reset_product_form(){
     $("#pmdl_row_id").val(0);
     $("#prd_taxperc").val(0);
     $("#prd_taxperc").attr('prd_tax_code',0);
+    $("#margin_perc").val('');
 
-   
+    $(".btn").attr('disabled',false);
+
 
 }
 
@@ -987,6 +1026,15 @@ return false;
 
 
 }
+prd_cost=parseFloat($("#prd_cost").val())||0;
+    this_val=parseFloat($("#prd_mrp").val())||0;
+    if(prd_cost>this_val){
+
+        $("#prd_mrp_error").text("Mrp Should be greater than Cost");
+        // $("#prd_mrp").focus().click();
+        status=1;
+        return false;
+    }
 
 
     if(status==0){
@@ -1065,11 +1113,17 @@ function save_product_po(){
         flag=data[0]['Result_Status'];
         msg=data[0]['Remarks'];
         if(flag==1){
+          
             $("#pmdl_batch_code").val(data[0]['ID']);
             $("#pmdl_row_id").val(data[0]['RowNo']);
             if($("#brnch_split_check").prop("checked")==false){
-                reset_product_form();
 
+            
+                reset_product_form();
+                
+
+            }else{
+                $("#brnch_split_tab").trigger('click');
             }
             load_products_of_po();
         }
@@ -1106,7 +1160,8 @@ $("#prd_qty").on('input',function(){
         prd_value=parseFloat($("#prd_rate").val())*parseFloat($(this).val());
         $("#prd_value").val(prd_value)
     }
-  
+  $("#avail_qty").text($(this).val());
+  calculate_cost();
 });
 $("#prd_rate").on('input',function(){
     prd_qty=$("#prd_qty").val()||0;
@@ -1121,16 +1176,20 @@ $("#prd_rate").on('input',function(){
 function calculate_cost(){
     tax_perc=$("#prd_taxperc").val()||0;
     
-
+    prd_qty=$("#prd_qty").val()||0;
     if(tax_perc>0){
 
  prd_cost_perc=parseFloat($("#prd_value").val())*parseFloat(tax_perc)/100;
-        $("#prd_cost").val((parseFloat($("#prd_value").val())+prd_cost_perc));
-        // CustomAlert((parseFloat($("#prd_value").val())+prd_cost_perc))
+        $("#prd_cost").val((parseFloat($("#prd_value").val())+prd_cost_perc)/prd_qty);
+        // alert((parseFloat($("#prd_value").val())+prd_cost_perc))else{}
     }
+    else{
+        $("#prd_cost").val((parseFloat($("#prd_value").val()))/prd_qty);
+    }
+    calculate_margin_perc();
 }
 
-$("#cost_percent").on('input',function(){
+$("#margin_perc").on('input',function(){
     prd_cost=$("#prd_cost").val()||0;
     this_val=$(this).val()||0;
     if(this_val>0){
@@ -1138,7 +1197,34 @@ $("#cost_percent").on('input',function(){
         $("#prd_mrp").val((parseFloat($("#prd_cost").val())+prd_mrp_perc));
     }
 })
+$("#prd_mrp").on('input',function(){
+    calculate_margin_perc();
+  
+})
 
+
+function calculate_margin_perc(){
+   
+    prd_cost=parseFloat($("#prd_cost").val())||0;
+    this_val=parseFloat($("#prd_mrp").val())||0;
+
+    if(prd_cost>this_val && this_val!=''){
+        $("#prd_mrp_error").text("Mrp Should be greater than Cost");
+        $("#margin_perc").val('');
+    }else{
+diff=this_val-prd_cost;
+        margin_perc=diff/prd_cost*100;
+        
+        if(margin_perc>0){
+            margin_perc=parseFloat(margin_perc).toFixed(2);
+        }else{
+            margin_perc=0;
+        }
+        $("#margin_perc").val(margin_perc);
+
+        $("#prd_mrp_error").text("");
+    }
+}
 
 
 $('.input-text,.form-control').on('keyup', function() {
@@ -1151,12 +1237,12 @@ $('.input-text,.form-control').on('keyup', function() {
 function load_brnch_split(){
 
 if($("#pmdl_row_id").val()==""||$("#pmdl_row_id").val()==0){
-    CustomAlert("Select Product First..");
+    alert("Select Product First..");
     return false;
     
 }
 if($("#pmdl_batch_code").val()==""||$("#pmdl_batch_code").val()==0){
-    CustomAlert("Select Product First..");
+    alert("Select Product First..");
     return false;
     
 }
@@ -1196,7 +1282,7 @@ $(data).each(function(key,val){
 tr+='<tr class="brnch_split_tr" branch_id="'+val['BranchID']+'">';
 tr+='<td>'+val['Branch']+'</td>';
 
-tr+='<td><input style="width: 75px;" type="number" value="'+qty+'" class="split_qty_td i_decimal" onkeypress="return isDecimalKey(event);"  min="0" placeholder=""></td>';
+tr+='<td><input style="width: 75px;" type="number" value="'+qty+'" class="split_qty_td i_decimal" oninput="calc_qty_split();" onkeypress="return isDecimalKey(event);calc_qty_split();"  min="0" placeholder=""></td>';
 tr+='<td>&nbsp;</td>';
 tr+='<td>&nbsp;</td>';
 tr+='<td>&nbsp;</td>';
@@ -1209,7 +1295,7 @@ $("#branchSplitTableBody").html(tr);
         
 
        }else{
-        CustomAlert("No Data Found");
+        alert("No Data Found");
         return false;
        }
    
@@ -1303,7 +1389,7 @@ if(prd_qty>0 && spt_qty>0 && spt_qty==prd_qty){
             reset_branch_split();
         }
         custom_alert_txt(msg,flag);
-        // CustomAlert(msg);
+        // alert(msg);
         
         },
         error: function(xhr) {
@@ -1315,10 +1401,13 @@ if(prd_qty>0 && spt_qty>0 && spt_qty==prd_qty){
                         }
         });
 }else{
+    $(".btn").attr('disabled',false);
+
     alert('Please Enter Split Quantity....');
     return false;
 }
 }else{
+    $(".btn").attr('disabled',false);
 
     alert('Split Quantity Mismatch....');
     $(".split_qty_td").addClass('border-danger');
@@ -1336,6 +1425,24 @@ if(prd_qty>0 && spt_qty>0 && spt_qty==prd_qty){
 
 
 
+function calc_qty_split(){
+    sum=0;
+
+    $(".split_qty_td").each(function(key,val){
+        sum+=parseFloat($(val).val());
+    })
+    $("#sum_qty_split").text(sum);
+}
+
+function split_equally_qty(){
+    avail_qty=parseFloat($("#avail_qty").text());
+
+sp_qty_td_len=$(".split_qty_td").length;
+a_qty=avail_qty/sp_qty_td_len;
+
+$(".split_qty_td").val(a_qty);
+calc_qty_split();
+}
 
 
 </script>
